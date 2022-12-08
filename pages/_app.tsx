@@ -1,8 +1,8 @@
-import { SessionProvider } from "next-auth/react"
-import "./styles.css"
+import { SessionProvider } from "next-auth/react";
+import "./styles.css";
 
-import type { AppProps } from "next/app"
-import type { Session } from "next-auth"
+import type { AppProps } from "next/app";
+import type { Session } from "next-auth";
 
 // Use of the <SessionProvider> is mandatory to allow components that call
 // `useSession()` anywhere in your application to access the `session` object.
@@ -10,9 +10,10 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps<{ session: Session }>) {
+  // See basePath as per https://next-auth.js.org/getting-started/client#custom-base-path
   return (
-    <SessionProvider session={session}>
+    <SessionProvider session={session} basePath="/custom-route/api/auth">
       <Component {...pageProps} />
     </SessionProvider>
-  )
+  );
 }
